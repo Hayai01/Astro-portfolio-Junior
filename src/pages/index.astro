@@ -8,58 +8,47 @@ import ContentMedia from '../components/ContentMedia.astro'
 
 <DefaultLayout title="Home">
   <Hero />
-  <section class="my-64">
+  <section class="my-40">
     <div class="container">
-      <h2 class="mb-16 text-6xl">Features</h2>
-      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-        <Feature icon="mdi:tailwind" title="Tailwind CSS">
-          Use the power of Tailwind to greatly improve your productivity and enhance your developer workflow.
+      <h2 class="mb-16 text-6xl">My Projects</h2>
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-1 lg:grid-cols-2">
+        <Feature title="Uyana TIC'S" url='/Uyana-cap.png'>
+          E-commerce Website for selling computers and electronics. Ensured smooth navigation and secure payments for an optimal user experience.
         </Feature>
-        <Feature icon="mdi:wheelchair-accessibility" title="a11y Components">
-          17 components and counting, all tried and tested for the most optimal accessible experience for your visitors.
+        <Feature title="React Components" url="/Tetris-cap.png">
+          React code-sharing platform inspired by Twitter, allowing users to upload and share code snippets. Enabled social interactions and collaboration within the coding community.
         </Feature>
-        <Feature icon="mdi:looks" title="Prettier">
-          Less worry about formatting your code, let the Astro Prettier integration do the heavy lifting.
+        <Feature  title="Tetris" url="/Tetris-cap.png">
+          Classic Tetris game with essential functionalities. Players can rotate and manipulate falling blocks to complete lines and score points. Offers an addictive gaming experience reminiscent of the iconic original.
         </Feature>
-        <Feature icon="mdi:eslint" title="ESLint">
-          Lint your code with strict a11y settings to ensure you stay on track with the WCAG standards.
-        </Feature>
-        <Feature icon="mdi:book-open-page-variant" title="Blog">
-          This theme comes with a fully integrated blog, dynamic pages and SEO optimization.
-        </Feature>
-        <Feature icon="mdi:language-markdown" title="Markdown & MDX">
-          Easily use .md and .mdx pages to build your websites or use it with Netlify CMS.
-        </Feature>
-        <Feature icon="mdi:theme-light-dark" title="Dark mode">
-          Fully integrated Dark mode gives your users the choice for their favorite viewing mode.
-        </Feature>
-        <Feature icon="mdi:cog" title="Design System">
-          The theme offers some very handy utilities to help you build your website faster.
-        </Feature>
-        <Feature icon="mdi:lighthouse" title="Lighthouse Scores">
-          Excellent lighthouse scores means your website will load faster and get better SEO rankings.
+        <Feature  title="Speech-Text" url='/Uyana-cap.png'>
+          Integrated a voice-to-text component into a landing page, designed for easy installation via npm. Users can effortlessly convert spoken words into text.
         </Feature>
       </div>
     </div>
   </section>
-  <ContentMedia imgSrc="/accessible-components.webp">
-    <h2>Accessible Components</h2>
-    <p class="text-2xl">
-      This theme provides plenty of tried and tested Accessible Astro Components. Some are native to this theme and a
-      lot of others are integrated using a <a href="https://github.com/markteekman/accessible-astro-components"
-        >separate package</a
-      >. They'll get you up and running in building an accessible solution for your visitors.
-    </p>
-  </ContentMedia>
-  <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={true}>
-    <h2>WCAG 2.1 AA Compliant</h2>
-    <p class="text-2xl">
-      Using semantic HTML, landmarks, skip links, screen reader friendly content, aria-labels, keyboard accessible
-      navigation and components, clear outlines and tab indicators and the right color contrast, you're more certain of
-      reaching WCAG AA compliance.
-    </p>
-  </ContentMedia>
-  <section class="mb-32 mt-64">
+  <section class="my-32">
+    <div class="container">
+      <h2 class="mb-16 text-6xl">Skills</h2>
+      <div class="feature grid grid-cols-1">
+          <section class="skills-section grid grid-cols-2 items-center">
+            <div class="flex items-center justify-center my-4">
+              <img src="/src/assets/img/astro-icon.svg" alt="Astro Logo" class="w-10 h-10 mr-4">
+              <div class="w-48 bg-gray-300 rounded-full">
+                <div class="h-6 bg-blue-500 rounded-full" style="width: 70%;"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-center my-4">
+              <img src="/src/assets/img/next-icon.svg" alt="Astro Logo" class="w-10 h-10 mr-4">
+              <div class="w-48 bg-gray-300 rounded-full">
+                <div class="h-6 bg-blue-500 rounded-full" style="width: 50%;"></div>
+              </div>
+            </div>
+          </section>
+      </div>
+    </div>
+  </section>
+  <section class="my-32">
     <div class="container">
       <h2 class="mb-16 text-6xl">Counters</h2>
       <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
@@ -71,3 +60,55 @@ import ContentMedia from '../components/ContentMedia.astro'
     </div>
   </section>
 </DefaultLayout>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+
+  .feature {
+    position: relative;
+    width: calc(100% - 0.5rem);
+    padding: 2rem;
+
+    > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    @include breakpoint(large) {
+      width: 100%;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+    }
+
+    &::before {
+      inset: 0;
+      background-color: var(--neutral-100);
+      border: 3px solid var(--neutral-700);
+      border-radius: 1rem;
+      box-shadow: 0 0 0 6px var(--neutral-100);
+      z-index: 1;
+    }
+
+    &::after {
+      background-color: var(--action-color);
+      inset: 1rem -0.85rem -0.85rem 1rem;
+      border-radius: 1rem;
+      z-index: 0;
+    }
+  }
+
+  :global(.feature [data-icon]) {
+    height: auto;
+    width: 4rem;
+    color: var(--action-color);
+  }
+
+  :global(.darkmode .feature::before) {
+    background-color: var(--dark-100);
+    box-shadow: 0 0 0 6px var(--dark-100);
+  }
+</style>
